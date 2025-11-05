@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: . # Usa o Dockerfile no diretório atual
+      target: builder # Usa o estágio "builder" que tem as ferramentas de dev
+    ports:
+      - "5001:5000"
+    volumes:
+      # CORREÇÃO AQUI: Adicionado ":z" no final para permissão do SELinux
+      # (O que causou o erro "Permission denied") | python: can't open file '/app/app.py': [Errno 13] Permission denied`]
+      - .:/app:z # Monta o código local e aplica o selo SELinux
+    env_file:
+      - .env
+    
+    # CORREÇÃO ANTERIOR: Diga explicitamente ao Flask onde está o app
+    # (O que causou o erro "Could not import 'app'") | Error: Could not import 'app'.`]
+    environment:
+      - FLASK_APP=app.py
+      
+    depends_on:
+      - db
+      
+    # CORREÇÃO ANTERIOR: Chama o Flask como módulo
+    # (O que causou o erro "flask not found") | Error: ... crun: executable file \`flask\` not found in $PATH: No such file or directory: OCI runtime attempted to invoke a command that was not found`]
+    command: ["python", "-m", "flask", "run", "--host=0.0.0.0", "--port=5000", "--reload"]
+
+  db:
+    image: postgres:15-alpine
+    env_file:
+      - .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
