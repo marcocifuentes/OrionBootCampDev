@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  # Serviço 1: A API Python
+  api:
+    build: . # Constrói a partir do Dockerfile
+    ports:
+      - "5001:5000" # Mapeia a porta 5001 do seu PC para a 5000 do container
+    env_file:
+      - .env # Carrega as variáveis do arquivo .env
+    depends_on: # Garante que o 'db' inicie antes da 'api'
+      - db
+    
+  # Serviço 2: O Banco de Dados
+  db:
+    image: postgres:15-alpine # Imagem oficial do PostgreSQL
+    env_file:
+      - .env # Carrega as mesmas variáveis para criar o banco
+    volumes:
+      - pg_data:/var/lib/postgresql/data # Cria um volume para persistência
+
+# Define o volume nomeado que foi usado acima
+volumes:
+  pg_data:
