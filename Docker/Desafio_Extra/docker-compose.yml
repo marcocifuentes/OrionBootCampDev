@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "5001:5000" 
+    env_file:
+      - .env
+    depends_on:
+      db:
+        # Critério do Desafio: Espera o DB ficar saudável
+        condition: service_healthy 
+    
+  db:
+    image: postgres:15-alpine
+    env_file:
+      - .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    # CORREÇÃO: Adicionado o nome do banco "-d ${POSTGRES_DB}"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  pg_data:
