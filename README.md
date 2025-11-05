@@ -1,1 +1,43 @@
-# OrionBootCampDev
+# Orion Bootcamp 2025 - New Rizon
+## Marco Cifuentes - Trilha de Programação (Dev)
+
+Este repositório documenta minha jornada e a entrega dos exercícios práticos do **Orion Bootcamp 2025**.
+
+O foco da trilha é a **IA Aplicada**, utilizando ferramentas como **n8n**, **Flowise** e **Strapi**.
+
+---
+
+## 🚀 Exercícios Entregues
+
+### Módulo: Docker
+
+O primeiro módulo foca em containerização com Docker, seguindo o fluxo **Gitflow** e **Conventional Commits** para entrega. Todos os exercícios foram entregues antes do prazo final (05/Nov às 18:00).
+
+* **[Exercício 1: Hello Container](./Docker/Exercício_01/)**
+    * Criação de um "Hello World" com Python/Flask, `Dockerfile` e `docker-compose.yml`.
+
+* **[Exercício 2: API + Banco de Dados](./Docker/Exercício_02/)**
+    * Orquestração de dois serviços (`api` e `db`) com `docker-compose`.
+    * Uso de variáveis de ambiente (`.env`) e volumes (`pg_data`).
+
+* **[Exercício 3: Ambientes Dev/Prod](./Docker/Exercício_03/)**
+    * Criação de `multi-stage builds` no `Dockerfile` para otimização.
+    * Uso de arquivos `docker-compose.dev.yml` (com live-reload) e `docker-compose.prod.yml`.
+
+* **[Desafio Extra: Stack Completa](./Docker/Desafio_Extra/)**
+    * Adição de um terceiro serviço (Adminer).
+    * Implementação de rota `/health` na API.
+    * Configuração de `healthcheck` no `docker-compose` do banco de dados.
+
+---
+### 🛠️ Ambiente de Desenvolvimento (Notas Pessoais)
+
+* **SO:** Fedora 42 (Linux)
+* **IDE:** VS Code
+* **Container Engine:** Podman (em vez de Docker Desktop).
+* **Notas de Configuração (Fedora):** Para resolver erros de `comando não encontrado` e `Permission denied` | python: can't open file '/app/app.py': [Errno 13] Permission denied`], foram necessários os seguintes pacotes de compatibilidade e flags do SELinux:
+    ```bash
+    sudo dnf install podman-docker podman-compose
+    # Adicionar ":z" ao final dos volumes no docker-compose.yml
+    # Ex: volumes: - .:/app:z
+    ```
