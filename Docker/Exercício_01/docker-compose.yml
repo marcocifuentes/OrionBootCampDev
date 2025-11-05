@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  webapp:
+    # Faz o build da imagem a partir do Dockerfile no diretório atual
+    build: .
+    # Exponha a porta 3000 do host e 3000 do contêiner
+    ports:
+      - "3000:3000"
