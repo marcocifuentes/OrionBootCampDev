@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      target: final # Usa o estágio "final", que é leve
+    ports:
+      - "5001:5000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    # O comando é o padrão do Dockerfile (CMD)
+
+  db:
+    image: postgres:15-alpine
+    env_file:
+      - .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
