@@ -41,17 +41,17 @@ O primeiro módulo foca em containerização com Docker, seguindo o fluxo **Gitf
     # Adicionar ":z" ao final dos volumes no docker-compose.yml
     # Ex: volumes: - .:/app:z
     ```
-    ---
+   ---
 
 ### Módulo: Banco de Dados
 
-[cite_start]O segundo módulo focou em Bancos de Dados Relacionais (SQL/PostgreSQL) e Não Relacionais (NoSQL/MongoDB), subindo o ambiente com Docker Compose e executando scripts [cite: 127-264].
+O segundo módulo focou em Bancos de Dados Relacionais (SQL/PostgreSQL) e Não Relacionais (NoSQL/MongoDB), subindo o ambiente com Docker Compose e executando scripts.
 
-* **(Exercício 1) Banco relacional (SQL Básico)**: [./banco-de-dados/Exercício_01](./banco-de-dados/Exercício_01)
+* **[ (Exercício 1) Banco relacional (SQL Básico) ](./banco-de-dados/Exercício_01)**
     * Criação de tabelas (`CREATE`), Chaves Primárias/Estrangeiras (`PK`/`FK`) e inserção de dados (`INSERT`).
-* **(Exercício 2) Banco relacional (JOINs e Filtros)**: [./banco-de-dados/Exercício_02](./banco-de-dados/Exercício_02)
+* **[ (Exercício 2) Banco relacional (JOINs e Filtros) ](./banco-de-dados/Exercício_02)**
     * Consultas com `INNER JOIN`, `WHERE`, `UPDATE` e o desafio extra com `LEFT JOIN`.
-* **(Exercício 3) Não relacional (CRUD Básico)**: [./banco-de-dados/Exercício_03](./banco-de-dados/Exercício_03)
+* **[ (Exercício 3) Não relacional (CRUD Básico) ](./banco-de-dados/Exercício_03)**
     * Criação de coleção no MongoDB, `insertOne` e prova de "Schema Flexível".
-* **(Exercício 4) Não relacional (Consultas Avançadas)**: [./banco-de-dados/Exercício_04](./banco-de-dados/Exercício_04)
+* **[ (Exercício 4) Não relacional (Consultas Avançadas) ](./banco-de-dados/Exercício_04)**
     * Uso de `updateOne` para adicionar dados aninhados e `find` com filtros avançados.
